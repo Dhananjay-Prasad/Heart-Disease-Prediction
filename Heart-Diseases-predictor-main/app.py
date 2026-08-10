@@ -65,21 +65,21 @@ BASE_DIR = Path(__file__).resolve().parent
 MODEL_PATH = BASE_DIR / "heart_disease_model.pkl"
 SCALER_PATH = BASE_DIR / "heart_disease_scaler.pkl"
 
-# Model loading
-try:
-    with open(MODEL_PATH, "rb") as f:
-        model = pickle.load(f)
+# # Model loading
+# try:
+#     with open(MODEL_PATH, "rb") as f:
+#         model = pickle.load(f)
 
-    with open(SCALER_PATH, "rb") as f:
-        scaler = pickle.load(f)
+#     with open(SCALER_PATH, "rb") as f:
+#         scaler = pickle.load(f)
 
-except FileNotFoundError:
-    st.error(
-        "Model files not found. Make sure "
-        "'heart_disease_model.pkl' and 'heart_disease_scaler.pkl' "
-        "are present in the same folder as app.py."
-    )
-    st.stop()
+# except FileNotFoundError:
+#     st.error(
+#         "Model files not found. Make sure "
+#         "'heart_disease_model.pkl' and 'heart_disease_scaler.pkl' "
+#         "are present in the same folder as app.py."
+#     )
+#     st.stop()
 
 HISTORY_COLUMNS = [
     "submitted_at",
