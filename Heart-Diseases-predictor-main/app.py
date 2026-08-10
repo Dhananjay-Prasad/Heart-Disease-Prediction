@@ -17,7 +17,7 @@ import os
 import base64
 from datetime import datetime
 from pathlib import Path
-import pickle
+
 
 try:
     from fpdf import FPDF
