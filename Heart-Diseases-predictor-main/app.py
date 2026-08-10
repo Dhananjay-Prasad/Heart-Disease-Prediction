@@ -16,6 +16,8 @@ import joblib
 import os
 import base64
 from datetime import datetime
+from pathlib import Path
+import pickle
 
 try:
     from fpdf import FPDF
@@ -58,8 +60,26 @@ FRIENDLY_NAMES = {
     "thal_normal": "Thalassemia: normal", "thal_reversable defect": "Thalassemia: reversible defect",
 }
 
-MODEL_PATH = "heart_disease_model.pkl"
-SCALER_PATH = "heart_disease_scaler.pkl"
+BASE_DIR = Path(__file__).resolve().parent
+
+MODEL_PATH = BASE_DIR / "heart_disease_model.pkl"
+SCALER_PATH = BASE_DIR / "heart_disease_scaler.pkl"
+
+# Model loading
+try:
+    with open(MODEL_PATH, "rb") as f:
+        model = pickle.load(f)
+
+    with open(SCALER_PATH, "rb") as f:
+        scaler = pickle.load(f)
+
+except FileNotFoundError:
+    st.error(
+        "Model files not found. Make sure "
+        "'heart_disease_model.pkl' and 'heart_disease_scaler.pkl' "
+        "are present in the same folder as app.py."
+    )
+    st.stop()
 
 HISTORY_COLUMNS = [
     "submitted_at",
